@@ -16,3 +16,13 @@ img {
   display: block;
   max-width: 100%;
 }
+
+button {
+  padding: 8px 12px;
+  cursor: pointer;
+  font: inherit;
+}
+input {
+  padding: 8px;
+  font: inherit;
+}
