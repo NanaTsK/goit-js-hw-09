@@ -5,6 +5,15 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const calendar = document.querySelector("#datetime-picker");
 const startBtn = document.querySelector("button[data-start]");
+const daysEl = document.querySelector("[data-days]");
+const hoursEl = document.querySelector("[data-hours]");
+const minutesEl = document.querySelector("[data-minutes]");
+const secondsEl = document.querySelector("[data-seconds]");
+
+startBtn.disabled = true;
+let selectedDate = null;
+
+const currentDate = new Date();
 
 const options = {
   enableTime: true,
@@ -12,15 +21,35 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
+    handlerSelectedDate(selectedDates[0]);
   },
 };
 
+function handlerSelectedDate(selectedDates) { 
+  if (selectedDates < currentDate) { 
+    Notify.warning("Please choose a date in the future");
+    return;
+  }
+  
+  startBtn.disabled = falce;
+
+  let countdown = selectedDates < currentDate;
+  startBtn.addEventListener("click", startCountdown)
+  
+  function startCountdown() { 
+    const intervalId = setInterval(() =>
+      
+    // ...
+
+    , 1000);
+
+  }
+};
+
+
+
+
 const fpCalendar = flatpickr(calendar, options);
-
-// Notify.warning("Please choose a date in the future");
-
-
 
 
 
@@ -47,7 +76,3 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-
-// console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-// console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
