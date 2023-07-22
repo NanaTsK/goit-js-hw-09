@@ -42,7 +42,6 @@ function handlerSelectedDate(selectedDates) {
     // ...
 
     , 1000);
-
   }
 };
 
