@@ -25,25 +25,25 @@ const options = {
   },
 };
 
-function handlerSelectedDate(selectedDates) { 
-  if (selectedDates < currentDate) { 
-    Notify.warning("Please choose a date in the future");
-    return;
-  }
+// function handlerSelectedDate(selectedDates) { 
+//   if (selectedDates < currentDate) { 
+//     Notify.warning("Please choose a date in the future");
+//     return;
+//   }
   
-  startBtn.disabled = falce;
+//   startBtn.disabled = falce;
 
-  let countdown = selectedDates < currentDate;
-  startBtn.addEventListener("click", startCountdown)
+//   let countdown = selectedDates < currentDate;
+//   startBtn.addEventListener("click", startCountdown)
   
-  function startCountdown() { 
-    const intervalId = setInterval(() =>
+//   function startCountdown() { 
+//     const intervalId = setInterval(() =>
       
-    // ...
+//     // ...
 
-    , 1000);
-  }
-};
+//     , 1000);
+//   }
+// };
 
 
 
