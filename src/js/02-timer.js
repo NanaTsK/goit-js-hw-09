@@ -26,6 +26,8 @@ const options = {
   },
 };
 
+flatpickr(calendar, options);
+
 let countdownInProgress = false;
 
 function handlerSelectedDate(selectedDates) { 
@@ -47,8 +49,10 @@ function startCountdown() {
   };
   countdownInProgress = true;
   startBtn.disabled = true;
+  Notify.info("Countdown started!");
+
   const intervalId = setInterval(updateCountdown, 1000);
-  
+
   function updateCountdown() { 
     const timeLeft = selectedDate - new Date();
 
@@ -98,6 +102,3 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-
-// startBtn.addEventListener("click", startCountdown);
-const fpCalendar = flatpickr(calendar, options);
