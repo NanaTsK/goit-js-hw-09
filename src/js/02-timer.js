@@ -25,37 +25,49 @@ const options = {
   },
 };
 
-// function handlerSelectedDate(selectedDates) { 
-//   if (selectedDates < currentDate) { 
-//     Notify.warning("Please choose a date in the future");
-//     return;
-//   }
+function handlerSelectedDate(selectedDates) { 
+  if (selectedDates <= currentDate) { 
+    Notify.warning("Please choose a date in the future");
+    return;
+  }
+  selectedDate = selectedDates;
+  startBtn.disabled = false;
+};
+
+
+function startCountdown() { 
+  startBtn.disabled = true;
+  const intervalId = setInterval(updateCountdown, 1000);
   
-//   startBtn.disabled = falce;
+  function updateCountdown() { 
+  const timeLeft = selectedDate - new Date();
 
-//   let countdown = selectedDates < currentDate;
-//   startBtn.addEventListener("click", startCountdown)
-  
-//   function startCountdown() { 
-//     const intervalId = setInterval(() =>
-      
-//     // ...
+  if (timeLeft <= 0) { 
+    clearInterval(intervalId);
+    resetTimer();
+    Notify.info("Countdown is finished!");
+    startBtn.disabled = false;
+    return;
+  }
+  const { days, hours, minutes, seconds } = convertMs(timeLeft);
 
-//     , 1000);
-//   }
-// };
+  daysEl.textContent = formatTimeValue(days);
+  hoursEl.textContent = formatTimeValue(hours);
+  minutesEl.textContent = formatTimeValue(minutes);
+  secondsEl.textContent = formatTimeValue(seconds);
+  };
+}
 
+function resetTimer() {
+  daysEl.textContent = "00";
+  hoursEl.textContent = "00";
+  minutesEl.textContent = "00";
+  secondsEl.textContent = "00";
+}
 
-
-
-const fpCalendar = flatpickr(calendar, options);
-
-
-
-
-
-
-
+function formatTimeValue(value) { 
+  return value.toString().padStart(2, "0");
+}
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -75,3 +87,9 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
+
+startBtn.addEventListener("click", startCountdown);
+const fpCalendar = flatpickr(calendar, options);
+
+
+//* ==============
